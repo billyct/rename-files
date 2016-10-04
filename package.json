@@ -1,0 +1,31 @@
+{
+  "name": "rename-files",
+  "version": "1.0.0",
+  "description": "rename files with simple rules",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billyct/rename-files.git"
+  },
+  "keywords": [
+    "rename",
+    "rename-files"
+  ],
+  "author": "billyct",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/billyct/rename-files/issues"
+  },
+  "homepage": "https://github.com/billyct/rename-files#readme",
+  "dependencies": {
+    "path-exists": "^3.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "tempfile": "^1.1.1",
+    "xo": "^0.16.0"
+  }
+}
