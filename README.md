@@ -1,4 +1,5 @@
-# rename-files
+# rename-files 
+[![Build Status](https://travis-ci.org/billyct/happycalculator.svg?branch=master)](https://travis-ci.org/billyct/happycalculator)
 > rename files name with a simple rule under a folder
 
 ## install
