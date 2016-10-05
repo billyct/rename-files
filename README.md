@@ -1,10 +1,10 @@
-# rename-files 
+# rename-files-under
 [![Build Status](https://travis-ci.org/billyct/happycalculator.svg?branch=master)](https://travis-ci.org/billyct/happycalculator)
-> rename files name with a simple rule under a folder
+> rename files name under a folder with a simple rule
 
 ## install
 ```
-$ npm install --save rename-files
+$ npm install --save rename-files-under
 ```
 
 ## usage
@@ -20,8 +20,8 @@ $ npm install --save rename-files
 
 ```
 //example.js
-const renameFiles = require('rename-files');
-renameFiles('/foo', '$_001').then(result => {
+const renameFilesUnder = require('rename-files-under');
+renameFilesUnder('/foo', '$_001').then(result => {
 	if (result) {
 		console.log('rename successs');
 	}
@@ -40,9 +40,9 @@ renameFiles('/foo', '$_001').then(result => {
 
 
 ## API
-#### renameFiles(directory, rule)
+#### renameFilesUnder(directory, rule)
 Return a `Promise` for true or false.
-#### renameFile.sync(directory, rule)
+#### renameFilesUnder.sync(directory, rule)
 return true or false
 
 ##### directory
