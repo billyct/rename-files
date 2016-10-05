@@ -1,5 +1,5 @@
 # rename-files-under
-[![Build Status](https://travis-ci.org/billyct/happycalculator.svg?branch=master)](https://travis-ci.org/billyct/happycalculator)
+[![Build Status](https://travis-ci.org/billyct/rename-files-under.svg?branch=master)](https://travis-ci.org/billyct/rename-files-under)
 > rename files name under a folder with a simple rule
 
 ## install
