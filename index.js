@@ -4,7 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const pathExists = require('path-exists');
 
-module.exports = (pattern = '', replace = '', options = {path: __dirname}) => {
+module.exports = (pattern, replace, options) => {
+	pattern = pattern || '';
+	replace = replace || '';
 	options = options || {
 		path: __dirname
 	};
@@ -45,7 +47,13 @@ module.exports = (pattern = '', replace = '', options = {path: __dirname}) => {
 	});
 };
 
-module.exports.sync = (pattern = '', replace = '', options = {path: __dirname}) => {
+module.exports.sync = (pattern, replace, options) => {
+	pattern = pattern || '';
+	replace = replace || '';
+	options = options || {
+		path: __dirname
+	};
+
 	if (pathExists.sync(options.path)) {
 		let files = fs.readdirSync(options.path);
 
