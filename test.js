@@ -26,59 +26,59 @@ test.afterEach(t => {
 	fs.rmdirSync(t.context.tmpDir);
 });
 
-test('async (only directory test result)', async t => {
-	const result = await fn(t.context.tmpDir);
+test('async (rename with blank string)', async t => {
+	const result = await fn();
 	t.is(result, true);
 });
 
-test('sync (only directory test result)', t => {
-	const result = fn.sync(t.context.tmpDir);
+test('sync (rename with blank string)', t => {
+	const result = fn.sync();
 	t.is(result, true);
 });
 
-test('async (only directory test files)', async t => {
+test('async (rename with the same)', async t => {
 	let filesBefore = fs.readdirSync(t.context.tmpDir).sort();
-	await fn(t.context.tmpDir);
+	await fn('(\\w+).txt', '$1.txt', {path: t.context.tmpDir});
 	let filesAfter = fs.readdirSync(t.context.tmpDir).sort();
 	t.deepEqual(filesBefore, filesAfter);
 });
 
-test('sync (only directory test files)', t => {
+test('sync (rename with the same)', t => {
 	let filesBefore = fs.readdirSync(t.context.tmpDir).sort();
-	fn.sync(t.context.tmpDir);
+	fn.sync('(\\w+).txt', '$1.txt', {path: t.context.tmpDir});
 	let filesAfter = fs.readdirSync(t.context.tmpDir).sort();
 	t.deepEqual(filesBefore, filesAfter);
 });
 
-test('async (only directory test files with rule)', async t => {
+test('async (rename with the diffrent)', async t => {
 	let filesBefore = fs.readdirSync(t.context.tmpDir);
 	filesBefore = filesBefore.map(file => file.replace(/(\w+).txt/, '$1_001.txt'));
 	filesBefore.sort();
-	await fn(t.context.tmpDir, '$_001');
+	await fn('(\\w+).txt', '$1_001.txt', {path: t.context.tmpDir});
 	let filesAfter = fs.readdirSync(t.context.tmpDir);
 	filesAfter.sort();
 	t.context.tmpFiles = filesAfter.map(file => path.resolve(t.context.tmpDir, file));
 	t.deepEqual(filesBefore, filesAfter);
 });
 
-test('sync (only directory test files with rule)', t => {
+test('sync (rename with the diffrent)', t => {
 	let filesBefore = fs.readdirSync(t.context.tmpDir);
 	filesBefore = filesBefore.map(file => file.replace(/(\w+).txt/, '$1_001.txt'));
 	filesBefore.sort();
-	fn.sync(t.context.tmpDir, '$_001');
+	fn.sync('(\\w+).txt', '$1_001.txt', {path: t.context.tmpDir});
 	let filesAfter = fs.readdirSync(t.context.tmpDir);
 	filesAfter.sort();
 	t.context.tmpFiles = filesAfter.map(file => path.resolve(t.context.tmpDir, file));
 	t.deepEqual(filesBefore, filesAfter);
 });
 
-test('async (only directory not exist test result)', async t => {
-	const result = await fn('/the/not/exited/path');
+test('async (not exist test result)', async t => {
+	const result = await fn('always ok', 'always ok', {path: '/the/not/exited/path'});
 	t.is(result, false);
 });
 
-test('sync (only directory not exist test result)', t => {
-	const result = fn.sync('/the/not/exited/path');
+test('sync (not exist test result)', t => {
+	const result = fn.sync('always ok', 'always ok', {path: '/the/not/exited/path'});
 	t.is(result, false);
 });
 

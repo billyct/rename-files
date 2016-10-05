@@ -4,23 +4,24 @@ const fs = require('fs');
 const path = require('path');
 const pathExists = require('path-exists');
 
-module.exports = (directory, rule) => {
+module.exports = (pattern = '', replace = '', options = {path: __dirname}) => {
+	options = options || {
+		path: __dirname
+	};
 	/* eslint promise/param-names: 0 */
 	return new Promise(resolveMain => {
-		pathExists(directory).then(exits => {
+		pathExists(options.path).then(exits => {
 			if (exits) {
-				fs.readdir(directory, (err, files) => {
+				fs.readdir(options.path, (err, files) => {
 					if (err) {
 						resolveMain(false);
 					}
 
 					let promises = [];
 
-					rule = rule || '$';
-
 					files.forEach(file => {
-						let oldPath = path.resolve(directory, file);
-						let newPath = getNewPath(directory, file, rule);
+						let oldPath = path.resolve(options.path, file);
+						let newPath = path.resolve(options.path, getNewFileName(file, pattern, replace));
 						promises.push(new Promise((resolve, reject) => {
 							fs.rename(oldPath, newPath, err => {
 								if (err) {
@@ -44,14 +45,13 @@ module.exports = (directory, rule) => {
 	});
 };
 
-module.exports.sync = (directory, rule) => {
-	if (pathExists.sync(directory)) {
-		let files = fs.readdirSync(directory);
-		rule = rule || '$';
+module.exports.sync = (pattern = '', replace = '', options = {path: __dirname}) => {
+	if (pathExists.sync(options.path)) {
+		let files = fs.readdirSync(options.path);
 
 		files.forEach(file => {
-			let oldPath = path.resolve(directory, file);
-			let newPath = getNewPath(directory, file, rule);
+			let oldPath = path.resolve(options.path, file);
+			let newPath = path.resolve(options.path, getNewFileName(file, pattern, replace));
 			let result = fs.renameSync(oldPath, newPath);
 			if (!result) {
 				return false;
@@ -64,11 +64,9 @@ module.exports.sync = (directory, rule) => {
 	return false;
 };
 
-function getNewPath(directory, file, rule) {
-	const ext = path.extname(file);
-	const filename = file.replace(ext, '');
-	let newPath = path.resolve(directory, rule.replace('$', filename) + ext);
-	return newPath;
+function getNewFileName(filename, pattern, replace) {
+	const reg = new RegExp(pattern);
+	return filename.replace(reg, replace);
 }
 
-module.exports.getNewPath = getNewPath;
+module.exports.getNewFileName = getNewFileName;

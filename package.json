@@ -1,26 +1,24 @@
 {
-  "name": "rename-files-under",
+  "name": "rename-files-b",
   "version": "1.0.0",
-  "description": "rename files that under a folder with simple rule",
+  "description": "rename files with pattern like String.replace(pattern, replace)",
   "main": "index.js",
   "scripts": {
     "test": "xo && ava"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/billyct/rename-files-under.git"
+    "url": "git+https://github.com/billyct/rename-files.git"
   },
   "keywords": [
     "rename",
-    "rename files",
-    "rename-files-under"
+    "rename files"
   ],
   "author": "billyct",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/billyct/rename-files-under/issues"
+    "url": "https://github.com/billyct/rename-files/issues"
   },
-  "homepage": "https://github.com/billyct/rename-files-under#readme",
+  "homepage": "https://github.com/billyct/rename-files#readme",
   "dependencies": {
     "path-exists": "^3.0.0"
   },

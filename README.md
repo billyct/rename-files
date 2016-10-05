@@ -1,10 +1,10 @@
-# rename-files-under
-[![Build Status](https://travis-ci.org/billyct/rename-files-under.svg?branch=master)](https://travis-ci.org/billyct/rename-files-under)
-> rename files name under a folder with a simple rule
+# rename-files
+[![Build Status](https://travis-ci.org/billyct/rename-files.svg?branch=master)](https://travis-ci.org/billyct/rename-files)
+> rename files with pattern like String.replace(pattern, replace)
 
 ## install
 ```
-$ npm install --save rename-files-under
+$ npm install --save rename-files-b
 ```
 
 ## usage
@@ -20,8 +20,8 @@ $ npm install --save rename-files-under
 
 ```
 //example.js
-const renameFilesUnder = require('rename-files-under');
-renameFilesUnder('/foo', '$_001').then(result => {
+const renameFiles = require('rename-files-b');
+renameFiles('(\\w+).(png|jpg)', '$1_001.$2', {path: '/foo'}).then(result => {
 	if (result) {
 		console.log('rename successs');
 	}
@@ -40,18 +40,25 @@ renameFilesUnder('/foo', '$_001').then(result => {
 
 
 ## API
-#### renameFilesUnder(directory, rule)
+#### renameFiles(pattern, replace, [options])
 Return a `Promise` for true or false.
-#### renameFilesUnder.sync(directory, rule)
+#### renameFiles.sync(pattern, replace, [options])
 return true or false
 
-##### directory
-Type: `string`
-path of the files should be change
+##### pattern
+Type: `string` || RegExp
+what you want replace
 
-##### rule
+##### replace
 Type: `string`
-simple rule that `$` for the filename without extension
+what you want replace to
+
+##### options
+Type: `object`
+###### path
+Type: `string`
+the path has lots files
+
 
 
 ## LICENSE
