@@ -59,7 +59,8 @@ Type: `object`
 Type: `string`
 the path has lots files
 
-
+## Related
+- [rename-files-cli](https://github.com/billyct/rename-files-cli) - CLI for this module
 
 ## LICENSE
 MIT @[billyct](http://billyct.com)
