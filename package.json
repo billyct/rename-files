@@ -1,6 +1,6 @@
 {
   "name": "rename-files-b",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "rename files with pattern like String.replace(pattern, replace)",
   "main": "index.js",
   "scripts": {
